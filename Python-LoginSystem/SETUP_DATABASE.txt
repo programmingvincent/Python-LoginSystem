@@ -1,0 +1,82 @@
+# 🛠 MySQL Setup Guide for This Project
+
+This guide explains how to set up your MySQL database to work with the application.
+
+---
+
+## 📋 Step 1: Create the Database
+
+Open your MySQL client (Workbench, terminal, etc.) and run:
+
+CREATE DATABASE user_db;
+
+---
+
+## 📋 Step 2: Select the Database
+
+USE user_db;
+
+---
+
+## 📋 Step 3: Create the Users Table
+
+Create a table to store users:
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') NOT NULL
+);
+
+- `id`: A unique number for each user.
+- `username`: The user's login name.
+- `password`: The user's password.
+- `role`: Either `admin` or `user`.
+
+---
+
+## 📋 Step 4: Insert Example Users (Optional)
+
+Add some example users so you can test login:
+
+INSERT INTO users (username, password, role) 
+VALUES 
+('admin', 'adminpass', 'admin'),
+('user1', 'userpass', 'user');
+
+✅ You can now log in using:
+- Username: `admin` | Password: `adminpass`
+- Username: `user1` | Password: `userpass`
+
+---
+
+## 📋 Step 5: Configure Database Connection in Python
+
+In your Python file, make sure the database connection matches your MySQL login details:
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="your_mysql_username",
+    password="your_mysql_password",
+    database="user_db",
+    port=3306
+)
+
+👉 Replace `your_mysql_username` and `your_mysql_password` with your real MySQL login info.
+
+---
+
+## 🎯 Quick Summary of MySQL Stages
+
+| Stage | What You Do |
+|------|--------------|
+| 1 | Create a database called `user_db` |
+| 2 | Create a `users` table |
+| 3 | Insert example users (optional) |
+| 4 | Update your Python MySQL connection settings |
+| 5 | Run the app and log in! 🎉 |
+
+---
+
+✅ Once the database is set up and the Python app is connected properly, you're ready to use the system!
